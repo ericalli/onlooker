@@ -1,0 +1,46 @@
+Onlooker v0.1
+=============
+
+OnLooker is a simple rails plugin that lets a user check the status of his or her website or server. OnLooker uses Ping's to check via TCP or HTTP whether the site, sites or servers that you specify are online and accessible. OnLooker also supports custom images to distinguish status.
+
+
+Example
+=======
+
+To use this plugin, simply call the check function in your controller such as:
+
+For a Website: @status = OnLooker.check('www.rubyonrails.com', 'web')
+
+For an IP: @status = OnLooker.check('207.179.66.134', 'ip')
+
+Then in your views:
+
+<%= @status %>
+
+This will report the text "Online" or "Offline" depending on the result of the check.
+
+The available options for OnLooker.check are:
+
+	- OnLooker.check(host, type, debug)
+		- Host can be a URL (without the http://) or IP
+		- Type can be set to web or ip
+		- Debug can be true or false in which OnLooker will attempt to give an explanation if your site is down
+		
+		
+Using images to distinguish statuses:
+
+OnLooker includes a basic helper to allow you to set an image for displaying online or offline status.
+
+For example, If you call the OnLooker.check function from the @status variable in your controller, your views can look something like this:
+
+<%= onlooker_format @status, :online_img => "/images/online.gif", :offline_img => "/images/offline.gif" %>
+
+That way an image is displayed in-place of the default "Online" or "Offline" text.
+
+
+Credits
+=======
+
+Copyright (c) 2008 Eric A. released under the MIT license
+http://from.two2twelve.com
+http://plugins.two2twelve.com
